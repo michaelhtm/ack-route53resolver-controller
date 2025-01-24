@@ -64,6 +64,27 @@ func newResourceDelta(
 			delta.Add("Spec.Name", a.ko.Spec.Name, b.ko.Spec.Name)
 		}
 	}
+	if ackcompare.HasNilDifference(a.ko.Spec.OutpostARN, b.ko.Spec.OutpostARN) {
+		delta.Add("Spec.OutpostARN", a.ko.Spec.OutpostARN, b.ko.Spec.OutpostARN)
+	} else if a.ko.Spec.OutpostARN != nil && b.ko.Spec.OutpostARN != nil {
+		if *a.ko.Spec.OutpostARN != *b.ko.Spec.OutpostARN {
+			delta.Add("Spec.OutpostARN", a.ko.Spec.OutpostARN, b.ko.Spec.OutpostARN)
+		}
+	}
+	if ackcompare.HasNilDifference(a.ko.Spec.PreferredInstanceType, b.ko.Spec.PreferredInstanceType) {
+		delta.Add("Spec.PreferredInstanceType", a.ko.Spec.PreferredInstanceType, b.ko.Spec.PreferredInstanceType)
+	} else if a.ko.Spec.PreferredInstanceType != nil && b.ko.Spec.PreferredInstanceType != nil {
+		if *a.ko.Spec.PreferredInstanceType != *b.ko.Spec.PreferredInstanceType {
+			delta.Add("Spec.PreferredInstanceType", a.ko.Spec.PreferredInstanceType, b.ko.Spec.PreferredInstanceType)
+		}
+	}
+	if len(a.ko.Spec.Protocols) != len(b.ko.Spec.Protocols) {
+		delta.Add("Spec.Protocols", a.ko.Spec.Protocols, b.ko.Spec.Protocols)
+	} else if len(a.ko.Spec.Protocols) > 0 {
+		if !ackcompare.SliceStringPEqual(a.ko.Spec.Protocols, b.ko.Spec.Protocols) {
+			delta.Add("Spec.Protocols", a.ko.Spec.Protocols, b.ko.Spec.Protocols)
+		}
+	}
 	if ackcompare.HasNilDifference(a.ko.Spec.ResolverEndpointType, b.ko.Spec.ResolverEndpointType) {
 		delta.Add("Spec.ResolverEndpointType", a.ko.Spec.ResolverEndpointType, b.ko.Spec.ResolverEndpointType)
 	} else if a.ko.Spec.ResolverEndpointType != nil && b.ko.Spec.ResolverEndpointType != nil {

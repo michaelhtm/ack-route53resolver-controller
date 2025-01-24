@@ -18,16 +18,16 @@ package v1alpha1
 type Action string
 
 const (
+	Action_ALERT Action = "ALERT"
 	Action_ALLOW Action = "ALLOW"
 	Action_BLOCK Action = "BLOCK"
-	Action_ALERT Action = "ALERT"
 )
 
 type AutodefinedReverseFlag string
 
 const (
-	AutodefinedReverseFlag_ENABLE                     AutodefinedReverseFlag = "ENABLE"
 	AutodefinedReverseFlag_DISABLE                    AutodefinedReverseFlag = "DISABLE"
+	AutodefinedReverseFlag_ENABLE                     AutodefinedReverseFlag = "ENABLE"
 	AutodefinedReverseFlag_USE_LOCAL_RESOURCE_SETTING AutodefinedReverseFlag = "USE_LOCAL_RESOURCE_SETTING"
 )
 
@@ -45,6 +45,21 @@ const (
 	BlockResponse_OVERRIDE BlockResponse = "OVERRIDE"
 )
 
+type ConfidenceThreshold string
+
+const (
+	ConfidenceThreshold_HIGH   ConfidenceThreshold = "HIGH"
+	ConfidenceThreshold_LOW    ConfidenceThreshold = "LOW"
+	ConfidenceThreshold_MEDIUM ConfidenceThreshold = "MEDIUM"
+)
+
+type DNSThreatProtection string
+
+const (
+	DNSThreatProtection_DGA           DNSThreatProtection = "DGA"
+	DNSThreatProtection_DNS_TUNNELING DNSThreatProtection = "DNS_TUNNELING"
+)
+
 type FirewallDomainImportOperation string
 
 const (
@@ -56,9 +71,16 @@ type FirewallDomainListStatus string
 const (
 	FirewallDomainListStatus_COMPLETE               FirewallDomainListStatus = "COMPLETE"
 	FirewallDomainListStatus_COMPLETE_IMPORT_FAILED FirewallDomainListStatus = "COMPLETE_IMPORT_FAILED"
-	FirewallDomainListStatus_IMPORTING              FirewallDomainListStatus = "IMPORTING"
 	FirewallDomainListStatus_DELETING               FirewallDomainListStatus = "DELETING"
+	FirewallDomainListStatus_IMPORTING              FirewallDomainListStatus = "IMPORTING"
 	FirewallDomainListStatus_UPDATING               FirewallDomainListStatus = "UPDATING"
+)
+
+type FirewallDomainRedirectionAction string
+
+const (
+	FirewallDomainRedirectionAction_INSPECT_REDIRECTION_DOMAIN FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN"
+	FirewallDomainRedirectionAction_TRUST_REDIRECTION_DOMAIN   FirewallDomainRedirectionAction = "TRUST_REDIRECTION_DOMAIN"
 )
 
 type FirewallDomainUpdateOperation string
@@ -72,8 +94,8 @@ const (
 type FirewallFailOpenStatus string
 
 const (
-	FirewallFailOpenStatus_ENABLED                    FirewallFailOpenStatus = "ENABLED"
 	FirewallFailOpenStatus_DISABLED                   FirewallFailOpenStatus = "DISABLED"
+	FirewallFailOpenStatus_ENABLED                    FirewallFailOpenStatus = "ENABLED"
 	FirewallFailOpenStatus_USE_LOCAL_RESOURCE_SETTING FirewallFailOpenStatus = "USE_LOCAL_RESOURCE_SETTING"
 )
 
@@ -96,148 +118,169 @@ const (
 type IPAddressStatus string
 
 const (
-	IPAddressStatus_CREATING                  IPAddressStatus = "CREATING"
-	IPAddressStatus_FAILED_CREATION           IPAddressStatus = "FAILED_CREATION"
-	IPAddressStatus_ATTACHING                 IPAddressStatus = "ATTACHING"
-	IPAddressStatus_ATTACHED                  IPAddressStatus = "ATTACHED"
-	IPAddressStatus_REMAP_DETACHING           IPAddressStatus = "REMAP_DETACHING"
-	IPAddressStatus_REMAP_ATTACHING           IPAddressStatus = "REMAP_ATTACHING"
-	IPAddressStatus_DETACHING                 IPAddressStatus = "DETACHING"
-	IPAddressStatus_FAILED_RESOURCE_GONE      IPAddressStatus = "FAILED_RESOURCE_GONE"
-	IPAddressStatus_DELETING                  IPAddressStatus = "DELETING"
-	IPAddressStatus_DELETE_FAILED_FAS_EXPIRED IPAddressStatus = "DELETE_FAILED_FAS_EXPIRED"
-	IPAddressStatus_UPDATING                  IPAddressStatus = "UPDATING"
+	IPAddressStatus_Attached               IPAddressStatus = "Attached"
+	IPAddressStatus_Attaching              IPAddressStatus = "Attaching"
+	IPAddressStatus_Creating               IPAddressStatus = "Creating"
+	IPAddressStatus_DeleteFailedFasExpired IPAddressStatus = "DeleteFailedFasExpired"
+	IPAddressStatus_Deleting               IPAddressStatus = "Deleting"
+	IPAddressStatus_Detaching              IPAddressStatus = "Detaching"
+	IPAddressStatus_FailedCreation         IPAddressStatus = "FailedCreation"
+	IPAddressStatus_FailedResourceGone     IPAddressStatus = "FailedResourceGone"
+	IPAddressStatus_RemapAttaching         IPAddressStatus = "RemapAttaching"
+	IPAddressStatus_RemapDetaching         IPAddressStatus = "RemapDetaching"
+	IPAddressStatus_UpdateFailed           IPAddressStatus = "UpdateFailed"
+	IPAddressStatus_Updating               IPAddressStatus = "Updating"
 )
 
 type MutationProtectionStatus string
 
 const (
-	MutationProtectionStatus_ENABLED  MutationProtectionStatus = "ENABLED"
 	MutationProtectionStatus_DISABLED MutationProtectionStatus = "DISABLED"
+	MutationProtectionStatus_ENABLED  MutationProtectionStatus = "ENABLED"
+)
+
+type OutpostResolverStatus string
+
+const (
+	OutpostResolverStatus_ACTION_NEEDED   OutpostResolverStatus = "ACTION_NEEDED"
+	OutpostResolverStatus_CREATING        OutpostResolverStatus = "CREATING"
+	OutpostResolverStatus_DELETING        OutpostResolverStatus = "DELETING"
+	OutpostResolverStatus_FAILED_CREATION OutpostResolverStatus = "FAILED_CREATION"
+	OutpostResolverStatus_FAILED_DELETION OutpostResolverStatus = "FAILED_DELETION"
+	OutpostResolverStatus_OPERATIONAL     OutpostResolverStatus = "OPERATIONAL"
+	OutpostResolverStatus_UPDATING        OutpostResolverStatus = "UPDATING"
+)
+
+type Protocol string
+
+const (
+	Protocol_DO53    Protocol = "DO53"
+	Protocol_DOH     Protocol = "DOH"
+	Protocol_DOHFIPS Protocol = "DOHFIPS"
 )
 
 type ResolverAutodefinedReverseStatus string
 
 const (
-	ResolverAutodefinedReverseStatus_ENABLING                               ResolverAutodefinedReverseStatus = "ENABLING"
-	ResolverAutodefinedReverseStatus_ENABLED                                ResolverAutodefinedReverseStatus = "ENABLED"
-	ResolverAutodefinedReverseStatus_DISABLING                              ResolverAutodefinedReverseStatus = "DISABLING"
-	ResolverAutodefinedReverseStatus_DISABLED                               ResolverAutodefinedReverseStatus = "DISABLED"
-	ResolverAutodefinedReverseStatus_UPDATING_TO_USE_LOCAL_RESOURCE_SETTING ResolverAutodefinedReverseStatus = "UPDATING_TO_USE_LOCAL_RESOURCE_SETTING"
-	ResolverAutodefinedReverseStatus_USE_LOCAL_RESOURCE_SETTING             ResolverAutodefinedReverseStatus = "USE_LOCAL_RESOURCE_SETTING"
+	ResolverAutodefinedReverseStatus_Disabled                          ResolverAutodefinedReverseStatus = "Disabled"
+	ResolverAutodefinedReverseStatus_Disabling                         ResolverAutodefinedReverseStatus = "Disabling"
+	ResolverAutodefinedReverseStatus_Enabled                           ResolverAutodefinedReverseStatus = "Enabled"
+	ResolverAutodefinedReverseStatus_Enabling                          ResolverAutodefinedReverseStatus = "Enabling"
+	ResolverAutodefinedReverseStatus_UpdatingToUseLocalResourceSetting ResolverAutodefinedReverseStatus = "UpdatingToUseLocalResourceSetting"
+	ResolverAutodefinedReverseStatus_UseLocalResourceSetting           ResolverAutodefinedReverseStatus = "UseLocalResourceSetting"
 )
 
 type ResolverDNSSECValidationStatus string
 
 const (
-	ResolverDNSSECValidationStatus_ENABLING                               ResolverDNSSECValidationStatus = "ENABLING"
-	ResolverDNSSECValidationStatus_ENABLED                                ResolverDNSSECValidationStatus = "ENABLED"
-	ResolverDNSSECValidationStatus_DISABLING                              ResolverDNSSECValidationStatus = "DISABLING"
-	ResolverDNSSECValidationStatus_DISABLED                               ResolverDNSSECValidationStatus = "DISABLED"
-	ResolverDNSSECValidationStatus_UPDATING_TO_USE_LOCAL_RESOURCE_SETTING ResolverDNSSECValidationStatus = "UPDATING_TO_USE_LOCAL_RESOURCE_SETTING"
-	ResolverDNSSECValidationStatus_USE_LOCAL_RESOURCE_SETTING             ResolverDNSSECValidationStatus = "USE_LOCAL_RESOURCE_SETTING"
+	ResolverDNSSECValidationStatus_Disabled                        ResolverDNSSECValidationStatus = "Disabled"
+	ResolverDNSSECValidationStatus_Disabling                       ResolverDNSSECValidationStatus = "Disabling"
+	ResolverDNSSECValidationStatus_Enabled                         ResolverDNSSECValidationStatus = "Enabled"
+	ResolverDNSSECValidationStatus_Enabling                        ResolverDNSSECValidationStatus = "Enabling"
+	ResolverDNSSECValidationStatus_UpdateToUseLocalResourceSetting ResolverDNSSECValidationStatus = "UpdateToUseLocalResourceSetting"
+	ResolverDNSSECValidationStatus_UseLocalResourceSetting         ResolverDNSSECValidationStatus = "UseLocalResourceSetting"
 )
 
 type ResolverEndpointDirection string
 
 const (
-	ResolverEndpointDirection_INBOUND  ResolverEndpointDirection = "INBOUND"
-	ResolverEndpointDirection_OUTBOUND ResolverEndpointDirection = "OUTBOUND"
+	ResolverEndpointDirection_Inbound  ResolverEndpointDirection = "Inbound"
+	ResolverEndpointDirection_Outbound ResolverEndpointDirection = "Outbound"
 )
 
 type ResolverEndpointStatus_SDK string
 
 const (
-	ResolverEndpointStatus_SDK_CREATING        ResolverEndpointStatus_SDK = "CREATING"
-	ResolverEndpointStatus_SDK_OPERATIONAL     ResolverEndpointStatus_SDK = "OPERATIONAL"
-	ResolverEndpointStatus_SDK_UPDATING        ResolverEndpointStatus_SDK = "UPDATING"
-	ResolverEndpointStatus_SDK_AUTO_RECOVERING ResolverEndpointStatus_SDK = "AUTO_RECOVERING"
-	ResolverEndpointStatus_SDK_ACTION_NEEDED   ResolverEndpointStatus_SDK = "ACTION_NEEDED"
-	ResolverEndpointStatus_SDK_DELETING        ResolverEndpointStatus_SDK = "DELETING"
+	ResolverEndpointStatus_SDK_ActionNeeded   ResolverEndpointStatus_SDK = "ActionNeeded"
+	ResolverEndpointStatus_SDK_AutoRecovering ResolverEndpointStatus_SDK = "AutoRecovering"
+	ResolverEndpointStatus_SDK_Creating       ResolverEndpointStatus_SDK = "Creating"
+	ResolverEndpointStatus_SDK_Deleting       ResolverEndpointStatus_SDK = "Deleting"
+	ResolverEndpointStatus_SDK_Operational    ResolverEndpointStatus_SDK = "Operational"
+	ResolverEndpointStatus_SDK_Updating       ResolverEndpointStatus_SDK = "Updating"
 )
 
 type ResolverEndpointType string
 
 const (
-	ResolverEndpointType_IPV6      ResolverEndpointType = "IPV6"
-	ResolverEndpointType_IPV4      ResolverEndpointType = "IPV4"
 	ResolverEndpointType_DUALSTACK ResolverEndpointType = "DUALSTACK"
+	ResolverEndpointType_IPV4      ResolverEndpointType = "IPV4"
+	ResolverEndpointType_IPV6      ResolverEndpointType = "IPV6"
 )
 
 type ResolverQueryLogConfigAssociationError string
 
 const (
-	ResolverQueryLogConfigAssociationError_NONE                   ResolverQueryLogConfigAssociationError = "NONE"
-	ResolverQueryLogConfigAssociationError_DESTINATION_NOT_FOUND  ResolverQueryLogConfigAssociationError = "DESTINATION_NOT_FOUND"
-	ResolverQueryLogConfigAssociationError_ACCESS_DENIED          ResolverQueryLogConfigAssociationError = "ACCESS_DENIED"
-	ResolverQueryLogConfigAssociationError_INTERNAL_SERVICE_ERROR ResolverQueryLogConfigAssociationError = "INTERNAL_SERVICE_ERROR"
+	ResolverQueryLogConfigAssociationError_AccessDenied         ResolverQueryLogConfigAssociationError = "AccessDenied"
+	ResolverQueryLogConfigAssociationError_DestinationNotFound  ResolverQueryLogConfigAssociationError = "DestinationNotFound"
+	ResolverQueryLogConfigAssociationError_InternalServiceError ResolverQueryLogConfigAssociationError = "InternalServiceError"
+	ResolverQueryLogConfigAssociationError_None                 ResolverQueryLogConfigAssociationError = "None"
 )
 
 type ResolverQueryLogConfigAssociationStatus string
 
 const (
-	ResolverQueryLogConfigAssociationStatus_CREATING      ResolverQueryLogConfigAssociationStatus = "CREATING"
-	ResolverQueryLogConfigAssociationStatus_ACTIVE        ResolverQueryLogConfigAssociationStatus = "ACTIVE"
-	ResolverQueryLogConfigAssociationStatus_ACTION_NEEDED ResolverQueryLogConfigAssociationStatus = "ACTION_NEEDED"
-	ResolverQueryLogConfigAssociationStatus_DELETING      ResolverQueryLogConfigAssociationStatus = "DELETING"
-	ResolverQueryLogConfigAssociationStatus_FAILED        ResolverQueryLogConfigAssociationStatus = "FAILED"
+	ResolverQueryLogConfigAssociationStatus_ActionNeeded ResolverQueryLogConfigAssociationStatus = "ActionNeeded"
+	ResolverQueryLogConfigAssociationStatus_Active       ResolverQueryLogConfigAssociationStatus = "Active"
+	ResolverQueryLogConfigAssociationStatus_Creating     ResolverQueryLogConfigAssociationStatus = "Creating"
+	ResolverQueryLogConfigAssociationStatus_Deleting     ResolverQueryLogConfigAssociationStatus = "Deleting"
+	ResolverQueryLogConfigAssociationStatus_Failed       ResolverQueryLogConfigAssociationStatus = "Failed"
 )
 
 type ResolverQueryLogConfigStatus string
 
 const (
-	ResolverQueryLogConfigStatus_CREATING ResolverQueryLogConfigStatus = "CREATING"
-	ResolverQueryLogConfigStatus_CREATED  ResolverQueryLogConfigStatus = "CREATED"
-	ResolverQueryLogConfigStatus_DELETING ResolverQueryLogConfigStatus = "DELETING"
-	ResolverQueryLogConfigStatus_FAILED   ResolverQueryLogConfigStatus = "FAILED"
+	ResolverQueryLogConfigStatus_Created  ResolverQueryLogConfigStatus = "Created"
+	ResolverQueryLogConfigStatus_Creating ResolverQueryLogConfigStatus = "Creating"
+	ResolverQueryLogConfigStatus_Deleting ResolverQueryLogConfigStatus = "Deleting"
+	ResolverQueryLogConfigStatus_Failed   ResolverQueryLogConfigStatus = "Failed"
 )
 
 type ResolverRuleAssociationStatus string
 
 const (
-	ResolverRuleAssociationStatus_CREATING   ResolverRuleAssociationStatus = "CREATING"
-	ResolverRuleAssociationStatus_COMPLETE   ResolverRuleAssociationStatus = "COMPLETE"
-	ResolverRuleAssociationStatus_DELETING   ResolverRuleAssociationStatus = "DELETING"
-	ResolverRuleAssociationStatus_FAILED     ResolverRuleAssociationStatus = "FAILED"
-	ResolverRuleAssociationStatus_OVERRIDDEN ResolverRuleAssociationStatus = "OVERRIDDEN"
+	ResolverRuleAssociationStatus_Complete   ResolverRuleAssociationStatus = "Complete"
+	ResolverRuleAssociationStatus_Creating   ResolverRuleAssociationStatus = "Creating"
+	ResolverRuleAssociationStatus_Deleting   ResolverRuleAssociationStatus = "Deleting"
+	ResolverRuleAssociationStatus_Failed     ResolverRuleAssociationStatus = "Failed"
+	ResolverRuleAssociationStatus_Overridden ResolverRuleAssociationStatus = "Overridden"
 )
 
 type ResolverRuleStatus_SDK string
 
 const (
-	ResolverRuleStatus_SDK_COMPLETE ResolverRuleStatus_SDK = "COMPLETE"
-	ResolverRuleStatus_SDK_DELETING ResolverRuleStatus_SDK = "DELETING"
-	ResolverRuleStatus_SDK_UPDATING ResolverRuleStatus_SDK = "UPDATING"
-	ResolverRuleStatus_SDK_FAILED   ResolverRuleStatus_SDK = "FAILED"
+	ResolverRuleStatus_SDK_Complete ResolverRuleStatus_SDK = "Complete"
+	ResolverRuleStatus_SDK_Deleting ResolverRuleStatus_SDK = "Deleting"
+	ResolverRuleStatus_SDK_Failed   ResolverRuleStatus_SDK = "Failed"
+	ResolverRuleStatus_SDK_Updating ResolverRuleStatus_SDK = "Updating"
 )
 
 type RuleTypeOption string
 
 const (
-	RuleTypeOption_FORWARD   RuleTypeOption = "FORWARD"
-	RuleTypeOption_SYSTEM    RuleTypeOption = "SYSTEM"
-	RuleTypeOption_RECURSIVE RuleTypeOption = "RECURSIVE"
+	RuleTypeOption_Forward   RuleTypeOption = "Forward"
+	RuleTypeOption_Recursive RuleTypeOption = "Recursive"
+	RuleTypeOption_System    RuleTypeOption = "System"
 )
 
 type ShareStatus string
 
 const (
-	ShareStatus_NOT_SHARED     ShareStatus = "NOT_SHARED"
-	ShareStatus_SHARED_WITH_ME ShareStatus = "SHARED_WITH_ME"
-	ShareStatus_SHARED_BY_ME   ShareStatus = "SHARED_BY_ME"
+	ShareStatus_NotShared    ShareStatus = "NotShared"
+	ShareStatus_SharedByMe   ShareStatus = "SharedByMe"
+	ShareStatus_SharedWithMe ShareStatus = "SharedWithMe"
 )
 
 type SortOrder string
 
 const (
-	SortOrder_ASCENDING  SortOrder = "ASCENDING"
-	SortOrder_DESCENDING SortOrder = "DESCENDING"
+	SortOrder_Ascending  SortOrder = "Ascending"
+	SortOrder_Descending SortOrder = "Descending"
 )
 
 type Validation string
 
 const (
-	Validation_ENABLE                     Validation = "ENABLE"
 	Validation_DISABLE                    Validation = "DISABLE"
+	Validation_ENABLE                     Validation = "ENABLE"
 	Validation_USE_LOCAL_RESOURCE_SETTING Validation = "USE_LOCAL_RESOURCE_SETTING"
 )

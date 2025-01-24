@@ -80,12 +80,13 @@ type FirewallDomainListMetadata struct {
 
 // A single firewall rule in a rule group.
 type FirewallRule struct {
-	CreationTime         *string `json:"creationTime,omitempty"`
-	CreatorRequestID     *string `json:"creatorRequestID,omitempty"`
-	FirewallDomainListID *string `json:"firewallDomainListID,omitempty"`
-	FirewallRuleGroupID  *string `json:"firewallRuleGroupID,omitempty"`
-	ModificationTime     *string `json:"modificationTime,omitempty"`
-	Name                 *string `json:"name,omitempty"`
+	CreationTime               *string `json:"creationTime,omitempty"`
+	CreatorRequestID           *string `json:"creatorRequestID,omitempty"`
+	FirewallDomainListID       *string `json:"firewallDomainListID,omitempty"`
+	FirewallRuleGroupID        *string `json:"firewallRuleGroupID,omitempty"`
+	FirewallThreatProtectionID *string `json:"firewallThreatProtectionID,omitempty"`
+	ModificationTime           *string `json:"modificationTime,omitempty"`
+	Name                       *string `json:"name,omitempty"`
 }
 
 // High-level information for a firewall rule group. A firewall rule group is
@@ -166,6 +167,17 @@ type IPAddressUpdate struct {
 	SubnetID *string `json:"subnetID,omitempty"`
 }
 
+// A complex type that contains settings for an existing Resolver on an Outpost.
+type OutpostResolver struct {
+	ARN                   *string `json:"arn,omitempty"`
+	CreationTime          *string `json:"creationTime,omitempty"`
+	CreatorRequestID      *string `json:"creatorRequestID,omitempty"`
+	ID                    *string `json:"id,omitempty"`
+	ModificationTime      *string `json:"modificationTime,omitempty"`
+	OutpostARN            *string `json:"outpostARN,omitempty"`
+	PreferredInstanceType *string `json:"preferredInstanceType,omitempty"`
+}
+
 // A complex type that contains information about a Resolver configuration for
 // a VPC.
 type ResolverConfig struct {
@@ -190,19 +202,22 @@ type ResolverDNSSEcConfig struct {
 // request, a complex type that contains settings for an existing inbound or
 // outbound Resolver endpoint.
 type ResolverEndpoint_SDK struct {
-	ARN                  *string   `json:"arn,omitempty"`
-	CreationTime         *string   `json:"creationTime,omitempty"`
-	CreatorRequestID     *string   `json:"creatorRequestID,omitempty"`
-	Direction            *string   `json:"direction,omitempty"`
-	HostVPCID            *string   `json:"hostVPCID,omitempty"`
-	ID                   *string   `json:"id,omitempty"`
-	IPAddressCount       *int64    `json:"ipAddressCount,omitempty"`
-	ModificationTime     *string   `json:"modificationTime,omitempty"`
-	Name                 *string   `json:"name,omitempty"`
-	ResolverEndpointType *string   `json:"resolverEndpointType,omitempty"`
-	SecurityGroupIDs     []*string `json:"securityGroupIDs,omitempty"`
-	Status               *string   `json:"status,omitempty"`
-	StatusMessage        *string   `json:"statusMessage,omitempty"`
+	ARN                   *string   `json:"arn,omitempty"`
+	CreationTime          *string   `json:"creationTime,omitempty"`
+	CreatorRequestID      *string   `json:"creatorRequestID,omitempty"`
+	Direction             *string   `json:"direction,omitempty"`
+	HostVPCID             *string   `json:"hostVPCID,omitempty"`
+	ID                    *string   `json:"id,omitempty"`
+	IPAddressCount        *int64    `json:"ipAddressCount,omitempty"`
+	ModificationTime      *string   `json:"modificationTime,omitempty"`
+	Name                  *string   `json:"name,omitempty"`
+	OutpostARN            *string   `json:"outpostARN,omitempty"`
+	PreferredInstanceType *string   `json:"preferredInstanceType,omitempty"`
+	Protocols             []*string `json:"protocols,omitempty"`
+	ResolverEndpointType  *string   `json:"resolverEndpointType,omitempty"`
+	SecurityGroupIDs      []*string `json:"securityGroupIDs,omitempty"`
+	Status                *string   `json:"status,omitempty"`
+	StatusMessage         *string   `json:"statusMessage,omitempty"`
 }
 
 // In the response to a CreateResolverQueryLogConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverQueryLogConfig.html),
@@ -290,9 +305,11 @@ type Tag struct {
 // In a CreateResolverRule (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverRule.html)
 // request, an array of the IPs that you want to forward DNS queries to.
 type TargetAddress struct {
-	IP   *string `json:"ip,omitempty"`
-	IPv6 *string `json:"ipv6,omitempty"`
-	Port *int64  `json:"port,omitempty"`
+	IP                   *string `json:"ip,omitempty"`
+	IPv6                 *string `json:"ipv6,omitempty"`
+	Port                 *int64  `json:"port,omitempty"`
+	Protocol             *string `json:"protocol,omitempty"`
+	ServerNameIndication *string `json:"serverNameIndication,omitempty"`
 }
 
 // Provides information about the IP address type in response to UpdateResolverEndpoint
