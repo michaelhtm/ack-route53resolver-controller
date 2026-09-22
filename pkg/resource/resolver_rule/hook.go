@@ -17,8 +17,12 @@ import (
 )
 
 var (
-	TypeVPCId       = "VPCID"
-	RequeueOnUpdate = requeue.Needed(fmt.Errorf("requeing to sync resource status"))
+	TypeVPCId = "VPCID"
+	// Delayed, not bare: this fires after every update, so a bare requeue would escalate to the 1000s backoff cap whenever a delta persists.
+	RequeueOnUpdate = requeue.NeededAfter(
+		fmt.Errorf("requeueing to sync resource status"),
+		requeue.DefaultRequeueAfterDuration,
+	)
 )
 
 // getCreatorRequestId will generate a CreatorRequestId for a given resolver endpoint
